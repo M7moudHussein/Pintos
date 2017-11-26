@@ -1,9 +1,10 @@
-fndef FIXEDPOINT_H_INCLUDED
+#ifndef FIXEDPOINT_H_INCLUDED
 
 #define FIXEDPOINT_H_INCLUDED
-#define f 1<<14
+#define FP 1<<14
 
-typedef int fixed_point
+typedef int fixed_point;
+
 fixed_point int_to_FixedPoint(int n) ;
 int fixedPoint_to_floorInt (fixed_point x);
 int fixedPoint_to_roundInt (fixed_point x);

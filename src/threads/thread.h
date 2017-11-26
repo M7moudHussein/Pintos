@@ -1,6 +1,6 @@
 #ifndef THREADS_THREAD_H
 #define THREADS_THREAD_H
-
+#include "fixedPoint.h"
 #include <debug.h>
 #include <list.h>
 #include <stdint.h>
@@ -88,8 +88,10 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
+    int nice;                           /* for mlfqs*/
+    fixed_point recent_cpu;             /* for mlfqs*/
    	int64_t wake_up_time;				       /* Time until wakeup, refer to devices/timer.c::timer_sleep() a*/
-	  struct list_elem allelem;           /* List element for all threads list. */
+    struct list_elem allelem;           /* List element for all threads list. */
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
@@ -108,6 +110,8 @@ struct thread
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
 extern bool thread_mlfqs;
+/* system load average*/
+extern fixed_point load_average;
 
 void thread_init (void);
 void thread_start (void);
@@ -135,9 +139,12 @@ void thread_foreach (thread_action_func *, void *);
 int thread_get_priority (void);
 void thread_set_priority (int);
 
+void bsd_recalculate_priority(struct thread* thread);
+
 int thread_get_nice (void);
 void thread_set_nice (int);
 int thread_get_recent_cpu (void);
 int thread_get_load_avg (void);
 
+void update_threads(void);
 #endif /* threads/thread.h */

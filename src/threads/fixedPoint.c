@@ -1,11 +1,11 @@
 #include "fixedPoint.h"
-
+#include <stdint.h>
 /**
   convert integer to fixed point
 */
 fixed_point int_to_FixedPoint(int n)
 {
-  return f*n;
+  return (FP)*n;
 }
 
 /**
@@ -13,7 +13,7 @@ convert fixed point to integer (rounding towards zero)
 */
 int fixedPoint_to_floorInt (fixed_point x)
 {
-  return x/f;
+  return x/(FP);
 }
 
 /**
@@ -22,8 +22,8 @@ converting fixed point to integer (rounding to nearest)
 int fixedPoint_to_roundInt (fixed_point x)
 {
   if (x>=0)
-     return (x+f/2)/f ;
-  return (x-f/2)/f ;
+     return (x+(FP)/2)/(FP) ;
+  return (x-(FP)/2)/(FP) ;
 }
 
 /**
@@ -31,7 +31,7 @@ add integer to fixed point x+n
 */
 fixed_point add_integer(fixed_point x,int n)
 {
-  return x+n*f;
+  return x+n*(FP);
 }
 
 /**
@@ -47,7 +47,7 @@ subtract integer from fixedpoint x-n
 */
 fixed_point sub_integer(fixed_point x,int n)
 {
-  return x-n*f;
+  return x-n*(FP);
 }
 
 /**
@@ -71,7 +71,7 @@ fixed point multiplication x*y
 */
 fixed_point mul_fixed_point(fixed_point x,fixed_point y)
 {
-  return ((int64_t) x)*y /f
+  return ((int64_t)x)*y /(FP);
 }
 
 /**
@@ -87,5 +87,5 @@ fixed point division x/y
 */
 fixed_point div_fixed_point(fixed_point x,fixed_point y)
 {
-  return ((int64_t)x)*f/y;
+  return ((int64_t)x)*(FP)/y;
 }
