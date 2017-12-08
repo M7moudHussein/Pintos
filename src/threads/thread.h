@@ -24,6 +24,10 @@ typedef int tid_t;
 #define PRI_DEFAULT 31 /* Default priority. */
 #define PRI_MAX 63     /* Highest priority. */
 
+#define MAX_NICE 20  /* maximum value for nice*/
+#define MIN_NICE -20 /*minimum value for nice*/
+
+
 #define max(n1, n2) ((n1) > (n2) ? (n1) : (n2))
 #define min(n1, n2) ((n1) < (n2) ? (n1) : (n2))
 

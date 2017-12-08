@@ -428,7 +428,7 @@ int thread_get_priority(void) { return thread_current()->priority; }
 
 /* Sets the current thread's nice value to NICE. */
 void thread_set_nice(int nice) {
-    ASSERT(nice >= -20 && nice <= 20);
+    ASSERT(nice >= MIN_NICE && nice <= MAX_NICE);
     enum intr_level old_level = intr_disable();
     thread_current()->nice = nice;
 
